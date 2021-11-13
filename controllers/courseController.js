@@ -5,10 +5,7 @@ exports.createCourse = async (req, res) => {
 
     try {
         const course = await Course.create(req.body);
-        res.status(201).json({
-            status: 'success',
-            course
-        });
+        res.status(201).redirect('/users/dashboard')
     } catch(error)  {
         res.status(400).json({
             status: 'failed',
@@ -32,7 +29,7 @@ exports.getAllCourses = async (req, res) => {
          }
 
         const categories = await Category.find();
-        const courses = await Course.find(filter);
+        const courses = await Course.find(filter).sort('-createdAt');
         res.status(201).render("courses", {
             page_name : "courses",
             courses,

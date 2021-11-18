@@ -31,6 +31,10 @@
                 </div><!-- end col -->
             </div><!-- end row -->
 			<div class="row mt-5"> 
+
+
+				<% user.courses.map( (kurs) => {  %>
+
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="course-item mb-5">
 						<div class="image-blog">
@@ -38,60 +42,24 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="course-single.html" title="">Engineering</a></h2>
+								<h2><a href="/courses/<%=kurs.slug %>" title=""><%=kurs.name %> </a></h2>
 							</div>
 							<div class="course-desc">
-								<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
+								<p>
+									<%=kurs.description %> 
+								</p>
+								<form method="POST" action="/courses/release">
+									<input type="hidden" name="course_id" value="<%= kurs._id %>">
+									<button class="btn btn-lg btn-warning text-white"><span>Ayrıl</span></button>
+								  </form>
 							</div>
 						</div>
 					</div>
                 </div><!-- end col -->
 
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="course-item mb-5">
-						<div class="image-blog">
-							<img src="images/blog_2.jpg" alt="" class="img-fluid">
-						</div>
-						<div class="course-br">
-							<div class="course-title">
-								<h2><a href="course-single.html" title="">Hotel Management</a></h2>
-							</div>
-							<div class="blog-desc">
-								<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-							</div>
-						</div>
-					</div>
-                </div><!-- end col -->	
-				                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="course-item mb-5">
-						<div class="image-blog">
-							<img src="images/blog_2.jpg" alt="" class="img-fluid">
-						</div>
-						<div class="course-br">
-							<div class="course-title">
-								<h2><a href="course-single.html" title="">Hotel Management</a></h2>
-							</div>
-							<div class="blog-desc">
-								<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-							</div>
-						</div>
-					</div>
-                </div><!-- end col -->	
-				  <div class="col-lg-6 col-md-6 col-12">
-                    <div class="course-item mb-5">
-						<div class="image-blog">
-							<img src="images/blog_2.jpg" alt="" class="img-fluid">
-						</div>
-						<div class="course-br">
-							<div class="course-title">
-								<h2><a href="course-single.html" title="">Hotel Management</a></h2>
-							</div>
-							<div class="blog-desc">
-								<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-							</div>
-						</div>
-					</div>
-                </div><!-- end col -->	
+				<%  }) %>
+            
+				 
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
@@ -187,6 +155,9 @@
 					</div><!-- end col -->
 				</div><!-- end row -->
 				<div class="row mt-5"> 
+
+
+					<% courses.map((ders)=> { %>
 					<div class="col-lg-6 col-md-6 col-12">
 						<div class="course-item mb-5">
 							<div class="image-blog">
@@ -194,60 +165,17 @@
 							</div>
 							<div class="course-br">
 								<div class="course-title">
-									<h2><a href="course-single.html" title="">Engineering</a></h2>
+									<h2><a href="/courses/<%=ders.slug %>" title=""><%=ders.name  %> </a></h2>
 								</div>
 								<div class="course-desc">
-									<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
+									<p><%= ders.description %> </p>
 								</div>
 							</div>
 						</div>
 					</div><!-- end col -->
-	
-					<div class="col-lg-6 col-md-6 col-12">
-						<div class="course-item mb-5">
-							<div class="image-blog">
-								<img src="images/blog_2.jpg" alt="" class="img-fluid">
-							</div>
-							<div class="course-br">
-								<div class="course-title">
-									<h2><a href="course-single.html" title="">Hotel Management</a></h2>
-								</div>
-								<div class="blog-desc">
-									<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-								</div>
-							</div>
-						</div>
-					</div><!-- end col -->	
-									<div class="col-lg-6 col-md-6 col-12">
-						<div class="course-item mb-5">
-							<div class="image-blog">
-								<img src="images/blog_2.jpg" alt="" class="img-fluid">
-							</div>
-							<div class="course-br">
-								<div class="course-title">
-									<h2><a href="course-single.html" title="">Hotel Management</a></h2>
-								</div>
-								<div class="blog-desc">
-									<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-								</div>
-							</div>
-						</div>
-					</div><!-- end col -->	
-					  <div class="col-lg-6 col-md-6 col-12">
-						<div class="course-item mb-5">
-							<div class="image-blog">
-								<img src="images/blog_2.jpg" alt="" class="img-fluid">
-							</div>
-							<div class="course-br">
-								<div class="course-title">
-									<h2><a href="course-single.html" title="">Hotel Management</a></h2>
-								</div>
-								<div class="blog-desc">
-									<p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-								</div>
-							</div>
-						</div>
-					</div><!-- end col -->	
+					<% }) %>
+				  
+					   	
 				</div><!-- end row -->
 			</div><!-- end container -->
 		</div><!-- end section -->

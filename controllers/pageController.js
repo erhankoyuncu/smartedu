@@ -50,7 +50,9 @@ exports.senEmail = async (req, res) => {
 
 
 
-    // create reusable transporter object using the default SMTP transport
+    try {
+        
+          // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.yandex.ru",
     port: 465,
@@ -69,9 +71,14 @@ exports.senEmail = async (req, res) => {
     text: "Hello world?", // plain text body
     html: mesaj, // html body
   });
+  req.flash("success", `Gönderim başarılı!`);
+
+    } catch (error) {
+        req.flash("error", `Something happened!`);
+    }
+ 
+  res.status(200).redirect('/contact');
 
 
-
-  res.send("tamam") 
 }
 

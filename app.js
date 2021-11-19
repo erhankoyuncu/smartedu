@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const ejs = require('ejs')
-const cors = require('cors')
+const cors = require('cors') 
 const pageRoute = require('./router/pageRoute');
 const courseRoute = require('./router/courseRoute')
 const categoryRoute = require('./router/categoryRoute')
 const userRoute = require('./router/userRoute')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const flash = require('connect-flash')
 const app = express();
 app.set("view engine", "ejs")
 
@@ -30,6 +31,7 @@ app.use(express.static("public"));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors()) // Use this after the variable declaration
+ 
 
 app.use(session({
     secret: 'smart_edu',
@@ -37,6 +39,14 @@ app.use(session({
     saveUninitialized : true,
     store: MongoStore.create({mongoUrl : 'mongodb://localhost/smartedu-db' })
 }))
+
+app.use(flash());
+app.use((req, res, next)=> {
+  res.locals.flashMessages = req.flash();
+  next();
+})
+
+
 
 app.use('*', (req, res, next) => {
     userIN = req.session.userID;

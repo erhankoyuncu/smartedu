@@ -32,26 +32,26 @@ exports.getContactPage = (req, res) => {
 
 exports.senEmail = async (req, res) => {
 
-        
+
     const mesaj = `
-    
+
     <div>
-    
+
         <h1> Merhaba Erhan </h1>
         Adı : ${req.body.first_name} <br>
         Soyadı : ${req.body.last_name} <br>
         Email : ${req.body.email} <br>
         Telefon : ${req.body.phone} <br>
         Mesajı : ${req.body.comments} <br>
-    
-    </div> 
-    
+
+    </div>
+
     `;
 
 
 
     try {
-        
+
           // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.yandex.ru",
@@ -76,9 +76,8 @@ exports.senEmail = async (req, res) => {
     } catch (error) {
         req.flash("error", `Something happened!`);
     }
- 
+
   res.status(200).redirect('/contact');
 
 
 }
-

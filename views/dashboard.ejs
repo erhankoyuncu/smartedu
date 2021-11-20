@@ -90,6 +90,17 @@
 	Yeni Kurs Ekle
   </button>
   
+  <% if (flashMessages) { %>
+	<% if (flashMessages.success) { %>
+	  <div class="alert alert-success">
+	<%= flashMessages.success %>
+	</div>
+  <% } else if (flashMessages.error) { %>
+   <div class="alert alert-danger">
+	<%= flashMessages.error %>
+	</div>
+	<% } %>
+  <% } %>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -170,9 +181,64 @@
 								<div class="course-desc">
 									<p><%= ders.description %> </p>
 								</div>
+								<ul style="display:flex; list-style-type: none; justify-content: space-between; margin:0; ">
+									<li><button class="btn btn-primary"  
+										data-toggle="modal" data-target="#update<%=ders._id  %>"
+										> Update</button></li>
+									<li><a href="/courses/<%= ders.slug %>?_method=DELETE"  onclick="return confirm('Silmek istediğine emin misin')"  class="btn btn-danger"> Delete</a></li>
+								</ul>
 							</div>
 						</div>
 					</div><!-- end col -->
+
+
+					<div class="modal fade" id="update<%=ders._id  %>" tabindex="-1" role="dialog" aria-labelledby="guncelle" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							  </button>
+							</div>
+							<div class="modal-body">
+							  <form action="/courses/<%=ders.slug  %>?_method=PUT" method="post">
+					
+								<div class="form-gruop">
+									<label> Kurs Adı</label>
+									<input type="text" name="name" value="<%=ders.name  %>" class="form-control">
+								</div>
+					
+								<div class="form-gruop">
+									<label> Kurs Adı</label>
+									<textarea class="form-control" name="description"><%=ders.description  %></textarea>
+								</div>
+					
+								<div class="form-gruop">
+									<label> Kurs Kategorisi</label>
+									 <select class="form-control" name="category">
+										<% categories.map((category) => {  %>
+											<option    value="<%=category._id %>">   <%= category.name %>  </option>
+										<% }) %>
+					
+									 </select>
+								</div>
+					
+								<input type="hidden" name="role" value="<%= user.role %>"  >
+								<input type="hidden" name="cours_id" value="<%= ders._id %>"  >
+					
+							  
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  <button type="submit" class="btn btn-primary">UPDATE </button>
+							</form>
+							</div>
+						  </div>
+						</div>
+					  </div>
+
+
 					<% }) %>
 				  
 					   	
